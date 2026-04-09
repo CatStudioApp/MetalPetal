@@ -29,9 +29,12 @@
 
 NSUInteger const MTIRenderPipelineMaximumColorAttachmentCount = 8;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu-folding-constant"
 @interface MTIRenderPipelineKernelConfiguration () {
     MTLPixelFormat _pixelFormats[MTIRenderPipelineMaximumColorAttachmentCount];
 }
+#pragma clang diagnostic pop
 @end
 
 @implementation MTIRenderPipelineKernelConfiguration

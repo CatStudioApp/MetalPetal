@@ -238,10 +238,13 @@ MTIContextImageAssociatedValueTableName const MTIContextImagePersistentResolutio
                 
                 NSUInteger dependencyCount = promise.dependencies.count;
                 
+                #pragma clang diagnostic push
+                #pragma clang diagnostic ignored "-Wvla-cxx-extension"
                 id<MTIImagePromiseResolution> inputResolutions[dependencyCount];
                 memset(inputResolutions, 0, sizeof inputResolutions);
-                
+
                 id<MTLSamplerState> inputSamplerStates[dependencyCount];
+                #pragma clang diagnostic pop
                 memset(inputSamplerStates, 0, sizeof inputSamplerStates);
                 
                 std::unordered_map<__unsafe_unretained MTIImage *, __unsafe_unretained id<MTLTexture>, MTIImageRendering::ObjcPointerHash, MTIImageRendering::ObjcPointerIdentityEqual> textureMap;

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import AVFoundation
+@preconcurrency import AVFoundation
 
 #if SWIFT_PACKAGE
 import MetalPetalObjectiveC.Core
@@ -252,7 +252,7 @@ public class MTIVideoComposition {
             
             let containsTweening: Bool = true
             
-            let requiredSourceTrackIDs: [NSValue]? = nil
+            nonisolated(unsafe) let requiredSourceTrackIDs: [NSValue]? = nil
             
             let passthroughTrackID: CMPersistentTrackID = kCMPersistentTrackID_Invalid
             
@@ -264,9 +264,9 @@ public class MTIVideoComposition {
             }
         }
         
-        let sourcePixelBufferAttributes: [String : Any]? = [kCVPixelBufferPixelFormatTypeKey as String: [kCVPixelFormatType_420YpCbCr8BiPlanarFullRange, kCVPixelFormatType_32BGRA, kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange]]
-        
-        let requiredPixelBufferAttributesForRenderContext: [String : Any] = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
+        let sourcePixelBufferAttributes: [String : any Sendable]? = [kCVPixelBufferPixelFormatTypeKey as String: [kCVPixelFormatType_420YpCbCr8BiPlanarFullRange, kCVPixelFormatType_32BGRA, kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange]]
+
+        let requiredPixelBufferAttributesForRenderContext: [String : any Sendable] = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
         
         private var pendingRequests: Set<VideoCompositionRequest> = []
         private let pendingRequestsLock = MTILockCreate()

@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 @protocol MTIFunctionArgumentEncoding <NSObject>
 
 + (BOOL)encodeValue:(id)value argument:(MTLArgument *)argument proxy:(id<MTIFunctionArgumentEncodingProxy>)proxy error:(NSError **)error;
@@ -35,6 +38,8 @@ __attribute__((objc_subclassing_restricted))
                   error:(NSError **)error;
 
 @end
+
+#pragma clang diagnostic pop
 
 
 NS_ASSUME_NONNULL_END
